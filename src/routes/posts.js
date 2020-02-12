@@ -1,6 +1,7 @@
 
 const express = require('express')
 const post = require('../use_cases/post')
+const auth = require('../middlewares/auth')
 
 const router = express.Router()
 
@@ -25,7 +26,7 @@ router.get('/', async (request, response) => {
 })
 
 // POST /posts -> 
-router.post('/', async (request, response) => {
+router.post('/', auth, async (request, response) => {
   try {
 const newPost = await post.create(request.body)
 response.json({
