@@ -39,6 +39,7 @@ router.post('/login', async (request, response) => {
       }
     })
   } catch (error) {
+    console.error(error)
     response.status(401)
     response.json({
       success: false,
@@ -85,5 +86,42 @@ router.get('/', async (request, response) => {
     })
   }
 })
+
+
+
+router.get('/validate-session', async (request, response) => {
+  try {
+    const token = await user.validateSession(request.headers.authorization)
+    response.json({
+
+      success: true,
+
+      message: 'Session Validated',
+
+      data: {
+
+        token
+
+      }
+
+    })
+
+  } catch (error) {
+
+    response.status(401)
+
+    response.json({
+
+      success: false,
+
+      message: 'Invalid session'
+
+    })
+
+  }
+
+})
+
+
 
 module.exports = router

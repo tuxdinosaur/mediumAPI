@@ -5,6 +5,7 @@ function auth (request, response, next) {
 try {
     const { autorization: token } = request.headers
     const decodedToken = jwt.verify(token)
+    console.log(decodedToken)
     if (!decodedToken) throw new Error('Invalid token')
     next()
 } catch (error) {

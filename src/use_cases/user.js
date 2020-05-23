@@ -31,9 +31,17 @@ function getAll () {
     return user.find()
 }
 
+
+
+function validateSession (token) {
+    const { id } = jwt.verify(token)
+    return jwt.sign({ id })
+}
+
 module.exports = {
     create,
     deleteById,
     login,
-    getAll
+    getAll,
+    validateSession
 }

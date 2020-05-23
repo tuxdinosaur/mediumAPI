@@ -25,8 +25,10 @@ router.get('/', async (request, response) => {
   }
 })
 
-// POST /posts -> 
-router.post('/', auth, async (request, response) => {
+// POST /posts ->
+
+//router.post('/', auth, async (request, response) => {
+router.post('/', async (request, response) => {
   try {
 const newPost = await post.create(request.body)
 response.json({
